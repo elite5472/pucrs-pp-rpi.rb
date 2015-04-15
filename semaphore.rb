@@ -12,12 +12,8 @@ Thread.new do
 	x1 = x
 	puts "Thread Started"
 	while true do
-		x1 = $button.gets
-		if x != x1
-			puts "Button Unpressed" if x1 == '0'
-			puts "Button Pressed" if x1 == '1'
-			x = x1
-		end
+		puts $button.gets
+		sleep(1.0)
 	end
 end
 
