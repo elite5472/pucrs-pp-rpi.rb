@@ -8,11 +8,13 @@ ports = [Port.open(17, 'w'), Port.open(18, 'w'), Port.open(15, 'w')]
 
 while true do
 	for p in ports do
+		puts "#{p.num} Off"
 		p.puts(0)
 	end
 	sleep(0.5)
 	
 	for p in ports do
+		puts "#{p.num} On"
 		p.puts(1)
 	end
 	sleep(0.5)
