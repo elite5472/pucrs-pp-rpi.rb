@@ -18,6 +18,7 @@ class Port
 	end
 	
 	def initialize(num, op = 'r')
+		dir = ''
 		if op == 'r'
 			dir = 'in'
 		elsif op == 'w'
@@ -28,11 +29,11 @@ class Port
 			
 		raise "Port '#{num}' already open." if File.exists? "/sys/class/gpio/gpio#{num}"
 		
-		@num = num
+		@number = num
 		@op = op
-		@path = File.join(GPIO_PATH, "gpio#{num}")
+		@path = File.join(GPIO_PATH, "gpio#{@number}")
 		
-		File.write(File.join(GPIO_PATH, "export"), num)
+		File.write(File.join(GPIO_PATH, "export"), @number)
 		IO.popen("chmod -R 777 #{@path}")
 		File.write(File.join(@path, 'direction'), dir)
 	end
