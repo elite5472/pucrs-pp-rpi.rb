@@ -10,6 +10,7 @@ $button = Port.new(22,'r')
 Thread.new do
 	x = $button.gets
 	x1 = x
+	puts "Thread Started"
 	while true do
 		x1 = $button.gets
 		if x != x1
