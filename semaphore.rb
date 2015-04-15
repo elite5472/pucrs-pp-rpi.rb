@@ -1,11 +1,11 @@
 load 'gpio.rb'
 
-for i in [1, 15, 17, 18] do
+for i in [22, 15, 17, 18] do
 	Port.close(i)
 end
 
 $leds = [Port.new(15,'w'), Port.new(17,'w'), Port.new(18,'w')]
-$button = Port.new(1,'r')
+$button = Port.new(22,'r')
 
 Thread.new do
 	x = $button.gets
