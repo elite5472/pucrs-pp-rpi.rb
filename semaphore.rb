@@ -1,5 +1,9 @@
 load 'gpio.rb'
 
+for i in [1, 15, 17, 18] do
+	Port.close(i)
+end
+
 leds = [Port.new(15,'w'), Port.new(17,'w'), Port.new(18,'w')]
 button = Port.new(1,'r')
 
@@ -19,6 +23,7 @@ def set_led(color)
 		leds[2].puts(1)
 	else
 		raise "Unknown color #{color}."
+	end
 end
 
 while true do
