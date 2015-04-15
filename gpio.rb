@@ -5,7 +5,7 @@ class Port
 	attr_reader :op
 	@path
 	
-	def open(num, op, &block)
+	def self.open(num, op, &block)
 		port = Port.new(num, op)
 		return port unless block_given?
 		yield port
