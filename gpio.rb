@@ -49,7 +49,7 @@ class Port
 		File.write(File.join(@path, 'value'), input)
 	end
 	
-	def gets(input)
+	def gets()
 		File.read(File.join(@path, 'value'))
 	end
 end
