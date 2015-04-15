@@ -2,7 +2,7 @@ load 'gpio.rb'
 
 Port.close(17)
 Port.close(18)
-Port.close(19)
+Port.close(15)
 
 ports = [Port.open(17, 'w'), Port.open(18, 'w'), Port.open(15, 'w')]
 
