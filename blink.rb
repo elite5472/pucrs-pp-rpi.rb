@@ -4,7 +4,7 @@ Port.close(17)
 Port.close(18)
 Port.close(19)
 
-ports = [Port.open(17, 'w'), Port.open(18, 'w'), Port.open(19, 'w')]
+ports = [Port.open(17, 'w'), Port.open(18, 'w'), Port.open(15, 'w')]
 
 while true do
 	for p in ports do
