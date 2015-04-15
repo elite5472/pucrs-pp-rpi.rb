@@ -28,7 +28,7 @@ end
 
 while true do
 	set_led('green')
-	for i in [1..100] do
+	for i in 1..100 do
 		#break if $button.gets == 1
 		sleep(10.0/100.0)
 	end
