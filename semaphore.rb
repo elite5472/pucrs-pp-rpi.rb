@@ -7,6 +7,19 @@ end
 $leds = [Port.new(15,'w'), Port.new(17,'w'), Port.new(18,'w')]
 $button = Port.new(1,'r')
 
+Thread.new do
+	x = $button.gets
+	x1 = x
+	while true do
+		x1 = $button.gets
+		if x != x1
+			puts "Button Unpressed" if x1 == '0'
+			puts "Button Pressed" if x1 == '1'
+			x = x1
+		end
+	end
+end
+
 def set_led(color)
 	case color
 	when 'green'
@@ -29,7 +42,7 @@ end
 while true do
 	set_led('green')
 	for i in 1..100 do
-		break if $button.gets == 1
+		break if $button.gets == '1'
 		sleep(10.0/100.0)
 	end
 
