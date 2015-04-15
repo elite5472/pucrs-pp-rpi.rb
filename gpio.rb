@@ -13,6 +13,10 @@ class Port
 		port.close
 	end
 	
+	def self.close(num)
+		File.write(File.join(GPIO_PATH, "unexport"), num)
+	end
+	
 	def initialize(num, op = 'r')
 		if op == 'r'
 			dir = 'in'
@@ -30,7 +34,7 @@ class Port
 		
 		File.write(File.join(GPIO_PATH, "export"), num)
 		IO.popen("chmod -R 777 #{@path}")
-		File.write(File.join(@path, 'direction', dir))
+		File.write(File.join(@path, 'direction'), dir)
 	end
 	
 	def close()
