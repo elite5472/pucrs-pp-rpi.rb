@@ -3,7 +3,7 @@ GPIO_PATH = "/sys/class/gpio/"
 class Port
 	attr_reader :number
 	attr_reader :op
-	@path
+	attr_reader :path
 	
 	def self.open(num, op, &block)
 		port = Port.new(num, op)
