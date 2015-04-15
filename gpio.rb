@@ -15,6 +15,9 @@ class Port
 	
 	def self.close(num)
 		File.write(File.join(GPIO_PATH, "unexport"), num)
+		true
+	rescue
+		false
 	end
 	
 	def initialize(num, op = 'r')
