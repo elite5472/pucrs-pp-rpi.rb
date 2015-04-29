@@ -11,7 +11,6 @@ class Port
 		yield port
 	ensure
 		port.close
-		
 	end
 	
 	def self.close(num)
