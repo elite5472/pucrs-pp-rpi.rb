@@ -1,0 +1,11 @@
+LedOperationProtocol:
+0x54
+LedId
+LedState
+0xFF
+
+ButtonPressEventProtocol:
+0x72
+ButtonId: uint8_t
+ButtonCount: uint8_t
+0xFF
