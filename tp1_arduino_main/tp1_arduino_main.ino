@@ -19,9 +19,14 @@ void setup()
   pinMode(LED_4_PIN, OUTPUT);
 }
 
-int button1_count = 0;
-int button2_count = 0;
-int button3_count = 0;
+int  button1_pressed = 0;
+byte button1_count = 0;
+
+int  button2_pressed = 0;
+byte button2_count = 0;
+
+int  button3_pressed = 0;
+byte button3_count = 0;
 
 void loop()
 {
@@ -32,97 +37,76 @@ void loop()
 
 void button_event()
 {
-  if(digitalRead(BUTTON_1_PIN) == HIGH)
-  {
-     button1_count++;
-     if(Serial.available){
-         Serial.write(9);
-         Serial.write(-1);
-         Serial.write(2);
-         Serial.write(-1);
-         Serial.write(button1_count);
-         Serial.write(-1);
-         Serial.write(-1);
-         Serial.write(8);
-     }
-  }
-  else if (digitalRead(BUTTON_2_PIN) == HIGH)
-  {
-     button2_count++;
-     if(Serial.available){
-         Serial.write(9);
-         Serial.write(-1);
-         Serial.write(2);
-         Serial.write(-1);
-         Serial.write(-1);
-         Serial.write(button2_count);
-         Serial.write(-1);
-         Serial.write(8);
-     }
-  }
-  else if (digitalRead(BUTTON_3_PIN) == HIGH)
-  {
-     button3_count++;
-     if(Serial.available){
-         Serial.write(9);
-         Serial.write(-1);
-         Serial.write(2);
-         Serial.write(-1);
-         Serial.write(-1);
-         Serial.write(-1);
-         Serial.write(button3_count);
-         Serial.write(8);
-     }
-  }
+	int button1_read = digitalRead(BUTTON_1_PIN);
+	int button2_read = digitalRead(BUTTON_2_PIN);
+	int button3_read = digitalRead(BUTTON_3_PIN);
+	
+	if(button1_pressed == 1 && button1_read == LOW)
+		button1_pressed == 0;
+		
+	if(button2_pressed == 1 && button1_read == LOW)
+		button2_pressed == 0;
+		
+	if(button3_pressed == 1 && button1_read == LOW)
+		button3_pressed == 0;
+		
+	if(button1_pressed == 0 && button1_read == HIGH)
+	{
+		button1_count++;
+		button1_pressed = 1;
+		Serial.write(0x72);
+		Serial.write(0x01);
+		Serial.write(button1_count);
+		Serial.write(0xFF);
+	}
+	if(button2_pressed == 0 && button2_read == HIGH)
+	{
+		button2_count++;
+		button2_pressed = 1;
+		Serial.write(0x72);
+		Serial.write(0x01);
+		Serial.write(button2_count);
+		Serial.write(0xFF);
+	}
+	if(button3_pressed == 0 && button3_read == HIGH)
+	{
+		button3_count++;
+		button3_pressed = 1;
+		Serial.write(0x72);
+		Serial.write(0x01);
+		Serial.write(button3_count);
+		Serial.write(0xFF);
+	}
 }
 
 void led_event()
 {
-     int in;
-     
-     if(Serial.available)
+     if(Serial.available() >= 4)
      {
-         in = Serial.read(); // 9
-         
-         in = Serial.read(); // -1
-         
-         in = Serial.read(); // 1
-         if (in != 1){
-             for(;;);
-         }  
-         
-         in = Serial.read(); // led1
-         if (in == 0){
-             digitalWrite(LED_1_PIN, LOW);
-         }
-         else if (in == 1){
-             digitalWrite(LED_1_PIN, HIGH);
-         }
-         
-         in = Serial.read(); // led2
-         if (in == 0){
-             digitalWrite(LED_2_PIN, LOW);
-         }
-         else if (in == 1){
-             digitalWrite(LED_2_PIN, HIGH);
-         }
-         
-         in = Serial.read(); // led3
-         if (in == 0){
-             digitalWrite(LED_3_PIN, LOW);
-         }
-         else if (in == 1){
-             digitalWrite(LED_3_PIN, HIGH);
-         }
-         
-         in = Serial.read(); // led4
-         if (in == 0){
-             digitalWrite(LED_4_PIN, LOW);
-         }
-         else if (in == 1){
-             digitalWrite(LED_4_PIN, HIGH);
-         }
-         
-         in = Serial.read(); // 8
+     	byte in0 = Serial.read();
+     	byte in1 = Serial.read();
+     	byte in2 = Serial.read();
+     	byte in3 = Serial.read();
+     	
+     	if (in0 != 0x54 && in3 != 0xFF)
+     		return;
+     	
+     	int pin = 0;
+     	if (in1 == 0x01)
+     		pin = LED_1_PIN;
+     	else if (in1 == 0x02)
+     		pin = LED_2_PIN;
+     	else if (in1 == 0x03)
+     		pin = LED_3_PIN;
+     	else if  (in1 == 0x04)
+     		pin = LED_4_PIN;
+     		
+     	if (pin != 0)
+     	{
+     		if (in2 == 0x00)
+     			digitalWrite(pin, LOW);
+     		else if (in2 == 0x01)
+     			digitalWrite(pin, HIGH);
+     	}
      }
 }
