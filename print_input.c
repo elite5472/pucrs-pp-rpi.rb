@@ -70,7 +70,7 @@ int main(int argc, char** argv){
         fd = config_serial("/dev/ttyAMA0", B9600);
         if (fd < 0) return 0;
 
-        uint8_t data = 0;
+        int data = 0;
         
         while(1)
         {
