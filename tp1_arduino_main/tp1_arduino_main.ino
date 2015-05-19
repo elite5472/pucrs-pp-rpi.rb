@@ -30,9 +30,9 @@ byte button3_count = 0;
 
 void loop()
 {
-  led_event();
-  button_event();
-  
+  //led_event();
+  //button_event();
+  Serial.write(0x01);
 }
 
 void button_event()
@@ -83,7 +83,7 @@ void led_event()
 {
 	while(Serial.available() > 0)
 	{
-		byte in0 = Serial.read()
+		byte in0 = Serial.read();
 		if (in0 == 0x54)
 		{
 			while(Serial.available() < 3)
