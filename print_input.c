@@ -77,7 +77,7 @@ int main(int argc, char** argv){
 			ssize_t bytes_read = read(fd, &data, sizeof(data));
 		
 			if(bytes_read > 0)
-				printf("%d\n", data);
+				printf("%c\n", data);
         }
         close(fd);
         return 0;
