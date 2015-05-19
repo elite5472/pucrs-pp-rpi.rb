@@ -70,14 +70,14 @@ int main(int argc, char** argv){
         fd = config_serial("/dev/ttyAMA0", B9600);
         if (fd < 0) return 0;
 
-        char data = 0;
+        int data = 0;
         
         while(1)
         {
 			ssize_t bytes_read = read(fd, &data, sizeof(data));
 		
 			if(bytes_read > 0)
-				printf("%x\n", data);
+				printf("%d\n", &data);
         }
         close(fd);
         return 0;
