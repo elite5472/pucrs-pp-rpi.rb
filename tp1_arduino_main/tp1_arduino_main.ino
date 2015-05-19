@@ -32,7 +32,7 @@ void loop()
 {
   //led_event();
   //button_event();
-  Serial.write(0x01);
+  Serial.write(0xFF);
 }
 
 void button_event()
