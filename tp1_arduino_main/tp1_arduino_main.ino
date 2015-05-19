@@ -81,32 +81,40 @@ void button_event()
 
 void led_event()
 {
-     if(Serial.available() >= 4)
-     {
-     	byte in0 = Serial.read();
-     	byte in1 = Serial.read();
-     	byte in2 = Serial.read();
-     	byte in3 = Serial.read();
-     	
-     	if (in0 != 0x54 && in3 != 0xFF)
-     		return;
-     	
-     	int pin = 0;
-     	if (in1 == 0x01)
-     		pin = LED_1_PIN;
-     	else if (in1 == 0x02)
-     		pin = LED_2_PIN;
-     	else if (in1 == 0x03)
-     		pin = LED_3_PIN;
-     	else if  (in1 == 0x04)
-     		pin = LED_4_PIN;
-     		
-     	if (pin != 0)
-     	{
-     		if (in2 == 0x00)
-     			digitalWrite(pin, LOW);
-     		else if (in2 == 0x01)
-     			digitalWrite(pin, HIGH);
-     	}
-     }
+	while(Serial.available() > 0)
+	{
+		byte in0 = Serial.read()
+		if (in0 == 0x54)
+		{
+			while(Serial.available() < 3)
+			{
+				delay(1);
+			}
+			
+			byte in1 = Serial.read();
+			byte in2 = Serial.read();
+			byte in3 = Serial.read();
+
+			if (in3 != 0xFF)
+				return;
+
+			int pin = 0;
+			if (in1 == 0x01)
+				pin = LED_1_PIN;
+			else if (in1 == 0x02)
+				pin = LED_2_PIN;
+			else if (in1 == 0x03)
+				pin = LED_3_PIN;
+			else if  (in1 == 0x04)
+				pin = LED_4_PIN;
+	
+			if (pin != 0)
+			{
+				if (in2 == 0x00)
+					digitalWrite(pin, LOW);
+				else if (in2 == 0x01)
+					digitalWrite(pin, HIGH);
+			}
+		}
+	}
 }
