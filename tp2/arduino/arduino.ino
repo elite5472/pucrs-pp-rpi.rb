@@ -11,9 +11,14 @@ const int LED_4_PIN = 4; // PD4
 
 int LEDstate[] = {1, 1, 1, 1};
 
-int button1_count = 0;
-int button2_count = 0;
-int button3_count = 0;
+int  button1_pressed = 0;
+byte button1_count = 0;
+
+int  button2_pressed = 0;
+byte button2_count = 0;
+
+int  button3_pressed = 0;
+byte button3_count = 0;
 
 void setup() 
 {
