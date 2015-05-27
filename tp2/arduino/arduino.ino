@@ -41,7 +41,7 @@ void setup()
 void loop()
 {
   led_event();
-  //button_event();
+  button_event();
 }
 
 void led_event()
