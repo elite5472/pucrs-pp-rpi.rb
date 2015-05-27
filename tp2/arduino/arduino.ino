@@ -91,48 +91,40 @@ void led_event()
     }
 }
 
-//void button_event()
-//{
-//  if(digitalRead(BUTTON_1_PIN) == HIGH)
-//  {
-//     button1_count++;
-//     if(Serial.available){
-//         Serial.write(9);
-//         Serial.write(-1);
-//         Serial.write(2);
-//         Serial.write(-1);
-//         Serial.write(button1_count);
-//         Serial.write(-1);
-//         Serial.write(-1);
-//         Serial.write(8);
-//     }
-//  }
-//  else if (digitalRead(BUTTON_2_PIN) == HIGH)
-//  {
-//     button2_count++;
-//     if(Serial.available){
-//         Serial.write(9);
-//         Serial.write(-1);
-//         Serial.write(2);
-//         Serial.write(-1);
-//         Serial.write(-1);
-//         Serial.write(button2_count);
-//         Serial.write(-1);
-//         Serial.write(8);
-//     }
-//  }
-//  else if (digitalRead(BUTTON_3_PIN) == HIGH)
-//  {
-//     button3_count++;
-//     if(Serial.available){
-//         Serial.write(9);
-//         Serial.write(-1);
-//         Serial.write(2);
-//         Serial.write(-1);
-//         Serial.write(-1);
-//         Serial.write(-1);
-//         Serial.write(button3_count);
-//         Serial.write(8);
-//     }
-//  }
-//}
+void button_event()
+{
+	int button1_read = !digitalRead(BUTTON_1_PIN);
+	int button2_read = !digitalRead(BUTTON_2_PIN);
+	int button3_read = !digitalRead(BUTTON_3_PIN);
+	
+	if(button1_pressed == 1 && button1_read == LOW)
+		button1_pressed == 0;
+		
+	if(button2_pressed == 1 && button1_read == LOW)
+		button2_pressed == 0;
+		
+	if(button3_pressed == 1 && button1_read == LOW)
+		button3_pressed == 0;
+		
+	if(button1_pressed == 0 && button1_read == HIGH)
+	{
+		button1_count++;
+		button1_pressed = 1;
+		Serial.write(1);
+		Serial.write(button1_count);
+	}
+	if(button2_pressed == 0 && button2_read == HIGH)
+	{
+		button2_count++;
+		button2_pressed = 1;
+		Serial.write(2);
+		Serial.write(button2_count);
+	}
+	if(button3_pressed == 0 && button3_read == HIGH)
+	{
+		button3_count++;
+		button3_pressed = 1;
+		Serial.write(2);
+		Serial.write(button2_count);
+	}
+}
