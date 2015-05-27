@@ -129,7 +129,7 @@ void button_event()
 	{
 		button3_count++;
 		button3_pressed = 1;
-		Serial.write(2);
-		Serial.write(button2_count);
+		Serial.write(3);
+		Serial.write(button3_count);
 	}
 }
