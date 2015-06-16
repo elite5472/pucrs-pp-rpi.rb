@@ -8,6 +8,6 @@ mailing_options:
   
 git:
   url: "https://github.com/elite5472/pucrs-pp-testrepo"
-  name: testrepo
-  path: /Users/gui/temp/dev
+  name: repo
+  path: ./temp
   run: make
