@@ -52,8 +52,12 @@ def check(git, last_date, command)
 		end
 		
 		message = "Project successfully compiled.\n\n#{output}"
+		
 		if exit_code > 0 
 			message = "Exit code #{exit_code}.\n\n#{output}"
+			`./led_controller 1`
+		else
+			`./led_controller 0`
 		end
 		
 		notify(message, git.log[0].author)
