@@ -1,0 +1,13 @@
+mailing_list:
+  - guillermo.borges@acad.pucrs.br
+  - luis.zani@acad.pucrs.br
+
+mailing_options:
+  user_name: rpi.cross.compiler@gmail.com
+  password: raspberry pi
+  
+git:
+  url: "https://github.com/elite5472/pucrs-pp-testrepo"
+  name: testrepo
+  path: /Users/gui/temp/dev
+  run: make
