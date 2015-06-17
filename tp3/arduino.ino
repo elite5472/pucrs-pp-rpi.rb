@@ -47,5 +47,5 @@ void blink()
 		digitalWrite(LED_PIN, HIGH);
 		LEDstate = 1;
 	}
-	delay(1000);
+	delay(500);
 }
