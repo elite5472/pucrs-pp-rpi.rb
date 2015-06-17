@@ -75,20 +75,26 @@ int config_serial(char * device, unsigned int baudrate){
 int main(int argc, char** argv){
   int serial;
 
-  serial = config_serial("/dev/ttyAMA0", B9600); // abre a porta 
-  if(serial<0){                                  // serial 9600
+  int led;
+  int command;
+    
+  
+
+  if(strncmp(argv[1], "0", 1) == 0)
+  {
+      command = 0;
+  }
+  else if (strncmp(argv[1], "1", 1) == 0)
+  {
+      command = 1;
+  }
+    
+  serial = config_serial("/dev/ttyAMA0", B9600); // abre a porta
+  if(serial<0)
+  {                                  // serial 9600
     return 0;
   }
 
-  int led;
-  int command;
-
-  if(argv[1] == "0") command = 0;
-  else if (argv[1] == "1") command = 1;
-  else if (argv[1] == "2") command = 2;
-  else if (argv[1] == "3") command = 3;
-  else if (argv[1] == "4") command = 4;
-  else if (argv[1] == "5") command = 5;
 
   write(serial, &command, 1);
 
