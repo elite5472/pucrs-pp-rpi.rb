@@ -1,6 +1,6 @@
 int inByte;
 
-const int LED_1_PIN = 10;  // PB2
+const int LED_PIN = 10;  // PB2
 
 int LEDstate = 1;
 
