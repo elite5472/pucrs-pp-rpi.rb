@@ -60,7 +60,7 @@ def check(git, last_date, command)
 			`./led_controller 0`
 		end
 		
-		notify(message, git.log[0].author)
+		#notify(message, git.log[0].author)
 	end
 	
 	commit_date
